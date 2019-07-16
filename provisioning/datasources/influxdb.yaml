@@ -1,0 +1,13 @@
+# see: https://grafana.com/docs/features/datasources/influxdb/#configure-the-datasource-with-provisioning
+apiVersion: 1
+
+datasources:
+- name: influxdb(_internal)
+  type: influxdb
+  access: proxy
+  database: _internal
+  url: http://influxdb:8086
+  orgId: 1
+  isDefault: true
+  version: 1
+  editable: false

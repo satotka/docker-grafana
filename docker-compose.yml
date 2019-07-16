@@ -1,0 +1,23 @@
+version: '2'
+services:
+  influxdb:
+    image: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_lib:/var/lib/influxdb
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+      - GF_INSTALL_PLUGINS=grafana-polystat-panel,bessler-pictureit-panel,marcuscalidus-svg-panel
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_lib:/var/lib/grafana
+      - ./provisioning/datasources/influxdb.yaml:/etc/grafana/provisioning/datasources/influxdb.yaml
+    depends_on:
+      - influxdb
+volumes:
+  grafana_lib:
+  influxdb_lib:
