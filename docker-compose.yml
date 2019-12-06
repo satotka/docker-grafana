@@ -16,6 +16,7 @@ services:
     volumes:
       - grafana_lib:/var/lib/grafana
       - ./provisioning/datasources/influxdb.yaml:/etc/grafana/provisioning/datasources/influxdb.yaml
+      - ./provisioning/dashboards:/etc/grafana/provisioning/dashboards
     depends_on:
       - influxdb
 volumes:
